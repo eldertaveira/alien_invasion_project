@@ -1,7 +1,8 @@
-import sys
+#import sys
 import pygame
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 def run_game():
     # Initialize pygame and create a screen object
@@ -12,17 +13,12 @@ def run_game():
     #Cria a espaçonave
     ship = Ship(screen)
 
-    # Start the main loop for the game
+    # Inicia o laço principal do jogo
     while True:
         # Watch for keyboard and mouse events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        gf.check_events()
 
         #Redesenha a tela a cada passagem pelo loop
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-        # Make the most recently drawn screen visible
-        pygame.display.flip()
+        gf.update_screen(ai_settings, screen, ship)
 
 run_game()
