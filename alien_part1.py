@@ -2,6 +2,7 @@
 import pygame
 from settings import Settings
 from ship import Ship
+from alien import Alien
 import game_functions as gf
 from pygame.sprite import Group
 
@@ -17,6 +18,9 @@ def run_game():
     # Cria um grupo para armazenar as balas
     bullets = Group()
 
+    # Cria um alien
+    alien = Alien(ai_settings, screen)  
+
     # Inicia o laço principal do jogo
     while True:
         # Watch for keyboard and mouse events
@@ -24,6 +28,6 @@ def run_game():
         ship.update()
         gf.update_bullets(bullets)
         # Redesenha a tela a cada passagem pelo loop
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, alien, bullets)
 
 run_game()
