@@ -23,7 +23,12 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
         bullets.update()
-        #Redesenha a tela a cada passagem pelo loop
+        #Livra-se de bullets que desapareceram
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+                print(len(bullets))
+        # Redesenha a tela a cada passagem pelo loop
         gf.update_screen(ai_settings, screen, ship, bullets)
 
 run_game()
